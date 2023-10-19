@@ -1,1 +1,6 @@
-<p>hero-details works!</p>
+<h3>{{hero.name}} details</h3>
+<p>id: {{hero.id}}</p>
+<h4>Hero Name: </h4>
+<input type="text" value={{updatedHeroName}} (keyup)="updateHeroName($event)">
+<button (click)="backToHeroesList()">Go back</button>
+<button (click)="updateHero()">Save</button>

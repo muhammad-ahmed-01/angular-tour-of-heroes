@@ -1,0 +1,7 @@
+<div (click)="fetchHeroDetails()" style="width: 400px;">
+    <span>{{hero.id}}</span>
+    <span style="margin-left: 10px;">{{hero.name | titlecase}}</span>
+    <button *ngIf="showRemoveBtn" (click)="deleteHero(hero.id, $event)">
+        <i style="margin-left: 10px;" class="fa fa-close"></i>
+    </button>
+</div>

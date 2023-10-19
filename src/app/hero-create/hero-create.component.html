@@ -1,0 +1,6 @@
+<h4>My Heroes</h4>
+<input type="text" value={{newHeroName}} (keyup)="updateHeroName($event)"/>
+<button (click)="createHero()" [disabled]="newHeroName.length === 0">Add Hero</button>
+<ul *ngFor="let hero of heroNames">
+  <app-hero-item [hero]="hero"></app-hero-item>
+</ul>

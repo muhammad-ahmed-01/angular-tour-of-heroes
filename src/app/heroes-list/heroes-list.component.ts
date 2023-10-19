@@ -1,28 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
+import { Hero } from '../hero';
 
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.css'],
 })
-export class HeroesListComponent {
-  heroNames: string[] = [
-    'Superman',
-    'Batman',
-    'Wonder Woman',
-    'Spider-Man',
-    'Iron Man',
-  ];
+export class HeroesListComponent implements OnInit {
+
+  heroNames: Hero[] = [];
+
+  constructor(private heroService: HeroService) { }
+
+  ngOnInit(): void {
+    this.heroNames = this.heroService.getHeroes();
+  }
+
   heroSearchQuery: string = '';
 
-  filteredHeroes: string[] = [];
+  filteredHeroes: Hero[] = [];
 
   searchHero() {
-    console.log('Searching for a hero');
+    this.filteredHeroes.splice(0, this.filteredHeroes.length);
+    if (this.heroSearchQuery.length == 0){
+      return;
+    }
+
+    console.warn('Searching for a hero');
     for (const hero of this.heroNames) {
-      if (hero.toLowerCase().includes(this.heroSearchQuery.toLowerCase())) {
+      if (hero.name.toLowerCase().includes(this.heroSearchQuery.toLowerCase())) {
         this.filteredHeroes.push(hero);
-        console.log(
+        console.warn(
           `${hero} matches the search string "${this.heroSearchQuery}"`
         );
       }
